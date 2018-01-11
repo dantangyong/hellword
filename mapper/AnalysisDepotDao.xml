@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mht.modules.dm.dao.AnalysisResultDao">
+     
+	<sql id="analysisResultColumns">
+		ar.id,
+		ar.analysis_result AS "result",
+<!-- 数据库与表单不符		ar.analysis_time AS "time", -->
+		ar.file_id AS "dmFile.id",
+		ar.analysis_result_desc AS "desc",
+		dv.create_by AS "createBy.id",
+		dv.create_date,
+		dv.update_by AS "updateBy.id",
+		dv.update_date
+	</sql>
+	<select id="get" resultType="AnalysisResult">
+		SELECT 
+			* 
+		FROM analysis_result 
+		WHERE id = #{id}
+	</select>
+	
+	<select id="findList" resultType="AnalysisResult">
+		SELECT 
+			* 
+		FROM analysis_result 
+	</select>
+
+	<insert id="insert">
+		INSERT INTO analysis_result(
+			id, 
+			analysis_result, 
+			file_id,
+<!-- 			analysis_time,  -->
+			analysis_result_desc, 
+			create_by, 
+			create_date, 
+			update_by, 
+			update_date 
+		) VALUES (
+			#{id}, 
+			#{result}, 
+			#{dmFile.id}, 
+<!-- 			#{time},  -->
+			#{desc}, 
+			#{createBy.id}, 
+			#{createDate}, 
+			#{updateBy.id}, 
+			#{updateDate}
+			
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE analysis_result SET 
+			analysis_result = #{result},
+<!-- 			analysis_time = #{time}, -->
+			file_id = #{dmFile.id}, 
+			analysis_result_desc = #{desc}, 
+			update_by = #{updateBy.id}, 
+			update_date = #{updateDate}, 
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		DELETE FROM analysis_result 
+		WHERE id = #{id}
+	</update>
+	
+</mapper>

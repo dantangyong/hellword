@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mht.modules.dm.dao.RuleDepotDao">
+     
+	<sql id="ruleDepotColumns">
+		rd.id,
+		rd.rule_id AS "ruleDepot.id",
+        rd.dict_id AS "dictType.id",
+		rd.rule_name AS "name",
+		rd.rule_content AS "content",
+		rd.rule_desc AS "desc",
+		rd.create_by AS "createBy.id",
+		rd.create_date,
+		rd.update_by AS "updateBy.id",
+		rd.update_date
+	</sql>
+	<select id="get" resultType="RuleDepot">
+		SELECT 
+			* 
+		FROM rule_depot 
+		WHERE id = #{id}
+	</select>
+	
+	<select id="findList" resultType="RuleDepot">
+		SELECT 
+			* 
+		FROM rule_depot 
+	</select>
+
+	<insert id="insert">
+		INSERT INTO rule_depot(
+			id, 
+			rule_id, 
+			dict_id,
+            rule_name,
+			rule_content, 
+			rule_desc, 
+			create_by, 
+			create_date, 
+			update_by, 
+			update_date 
+		) VALUES (
+			#{id}, 
+			#{ruleDepot.id}, 
+			#{dictType.id}, 
+			#{name}, 
+			#{content}, 
+			#{desc}, 
+			#{createBy.id}, 
+			#{createDate}, 
+			#{updateBy.id}, 
+			#{updateDate}
+			
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE rule_depot SET 
+			rule_id = #{ruleDepot.id},
+			dict_id = #{dictType.id}, 
+			rule_name = #{name}, 
+			rule_content = #{content}, 
+			rule_desc = #{desc}, 
+			update_by = #{updateBy.id}, 
+			update_date = #{updateDate}, 
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		DELETE FROM rule_depot 
+		WHERE id = #{id}
+	</update>
+	
+</mapper>

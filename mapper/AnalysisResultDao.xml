@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mht.modules.dm.dao.AnalysisDepotDao">
+     
+	<sql id="analysisDepotColumns">
+		ad.id,
+		ad.analysis_id AS "analysisDepot.id",
+		ad.dict_id AS "dictType.id",
+		ad.analysis_name AS "name",
+		ad.analysis_desc AS "desc",
+		ad.create_by AS "createBy.id",
+		ad.create_date,
+		ad.update_by AS "updateBy.id",
+		ad.update_date
+	</sql>
+	<select id="get" resultType="AnalysisDepot">
+		SELECT 
+			* 
+		FROM analysis_depot 
+		WHERE id = #{id}
+	</select>
+	
+	<select id="findList" resultType="AnalysisDepot">
+		SELECT 
+			* 
+		FROM analysis_depot 
+	</select>
+
+	<insert id="insert">
+		INSERT INTO analysis_depot(
+			id, 
+			analysis_id, 
+			dict_id,
+            analysis_name,
+			analysis_desc, 
+			create_by, 
+			create_date, 
+			update_by, 
+			update_date 
+		) VALUES (
+			#{id}, 
+			#{analysisDepot.id}, 
+			#{dictType.id}, 
+ 			#{name}, 
+			#{desc}, 
+			#{createBy.id}, 
+			#{createDate}, 
+			#{updateBy.id}, 
+			#{updateDate}
+			
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE analysis_depot SET 
+			analysis_id = #{analysisDepot.id},
+			dict_id = #{dictType.id}, 
+			analysis_name = #{name}, 
+			analysis_desc = #{desc}, 
+			update_by = #{updateBy.id}, 
+			update_date = #{updateDate}, 
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		DELETE FROM analysis_depot 
+		WHERE id = #{id}
+	</update>
+	
+</mapper>

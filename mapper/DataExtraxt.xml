@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mht.modules.dm.dao.DataExtraxtDao">
+
+	<sql id="dataExtraxtColumns">
+		dex.id,
+		dex.data_extraxt_result AS "result",
+		dex.data_extraxt_desc AS "desc",
+		dex.create_by AS "createBy.id",
+		dex.create_date,
+		dex.update_by AS "updateBy.id",
+		dex.update_date
+	</sql>
+	
+	<select id="selectAll" resultType="DataExtraxt">
+		SELECT * FROM data_extraxt
+	</select>
+	
+	<select id="get" resultType="DataExtraxt">
+	    SELECT 
+			   * 
+		FROM data_extraxt 
+		WHERE id = #{id}
+		
+	</select>
+	
+	<select id="findList" resultType="DataExtraxt">
+		SELECT
+			<include refid="dataExtraxtColumns"/>
+		FROM data_extraxt dex
+		
+		<if test="result != null and result != ''">
+				WHERE dex.result like 
+					<if test="dbName == 'oracle'">'%'||#{result}||'%'</if>
+				    <if test="dbName == 'mysql'">CONCAT('%', #{result}, '%')</if>
+		</if>
+		 
+	  </select>
+			
+	<insert id="insert">
+		INSERT INTO data_extraxt(
+			id, 
+			data_extraxt_result, 
+			data_extraxt_desc, 
+			create_by, 
+			create_date, 
+			update_by, 
+			update_date
+			
+		) VALUES (
+			#{id}, 
+			#{result}, 
+			#{desc}, 
+			#{createBy.id}, 
+			#{createDate}, 
+			#{updateBy.id}, 
+			#{updateDate}, 
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE data_extraxt
+		SET 
+			data_extraxt_result = #{result}, 
+			data_extraxt_desc = #{desc}, 
+			d.update_by = #{updateBy.id}, 
+			d.update_date = #{updateDate}, 
+		WHERE dex.id = #{id}
+	</update>
+	
+	<delete id="delete">
+		DELETE FROM data_extraxt  
+		WHERE id = #{id}
+	</delete>
+	
+	
+</mapper>

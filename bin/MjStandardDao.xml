@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mht.modules.swjtu.dao.MjStandardDao">
+     <sql id="standardColumns">
+		s.id,
+		s.standard_name AS "standardName",
+		s.start_time AS "startTime",
+		s.end_time AS "endTime",
+		s.out_standard AS "outStandard",
+		s.status,
+		s.type,
+		s.del_flag
+	</sql>
+	<insert id="insert">
+		INSERT INTO mj_standard(
+			id,
+			standard_name,
+	    	start_time,
+    		end_time,
+    		out_standard,
+    		status,
+    		type,
+			del_flag
+		) VALUES (
+			#{id},
+			#{standardName},  
+            #{startTime},
+            #{endTime},
+            #{outStandard},
+            #{status},
+            #{type},
+			#{delFlag}
+		)
+	</insert>
+	
+	<select id="get" resultType="MjStandard">
+		SELECT
+			<include refid="standardColumns"/>
+		FROM mj_standard s
+		WHERE s.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="MjStandard">
+        SELECT 
+            <include refid="standardColumns"/>
+        FROM mj_standard s  
+        <where>
+        	s.del_flag = #{DEL_FLAG_NORMAL}
+        </where>
+	    ORDER BY s.id
+    </select>
+    
+    <update id="update">
+		UPDATE mj_standard SET 
+            standard_name = #{standardName},
+    		start_time = #{startTime},
+    		end_time = #{endTime},
+    		out_standard = #{outStandard},
+    		status = #{status},
+    		type = #{type},
+    		del_flag = #{delFlag}
+		WHERE id = #{id}
+	</update>
+	
+	<delete id="delete">
+		DELETE FROM mj_standard 
+		WHERE id = #{id}
+	</delete>
+	
+	<update id="deleteByLogic">
+		UPDATE mj_standard SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="updateState">
+		UPDATE mj_standard
+		SET status=#{status} 
+		WHERE id = #{id}
+	</update>
+</mapper>

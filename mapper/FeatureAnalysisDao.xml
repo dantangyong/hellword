@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mht.modules.dm.dao.FeatureAnalysisDao">
+     
+	<sql id="featureAnalysisColumns">
+		fa.id,
+		fa.feature_id AS "featureDepot.id",
+        fa.ffanalysis_method AS "analysisDepot.id",
+		fa.ffanalysis_desc AS "desc",
+		fa.create_by AS "createBy.id",
+		fa.create_date,
+		fa.update_by AS "updateBy.id",
+		fa.update_date
+	</sql>
+	<select id="get" resultType="FeatureAnalysis">
+		SELECT 
+			* 
+		FROM feature_analysis 
+		WHERE id = #{id}
+	</select>
+	
+	<select id="findList" resultType="FeatureAnalysis">
+		SELECT 
+			* 
+		FROM feature_analysis 
+	</select>
+
+	<insert id="insert">
+		INSERT INTO feature_analysis(
+			id, 
+			feature_id, 
+			ffanalysis_method,
+            ffanalysis_desc,
+			create_by, 
+			create_date, 
+			update_by, 
+			update_date 
+		) VALUES (
+			#{id}, 
+			#{featureDepot.id}, 
+			#{analysisDepot.id}, 
+			#{desc}, 
+			#{createBy.id}, 
+			#{createDate}, 
+			#{updateBy.id}, 
+			#{updateDate}
+			
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE feature_analysis SET 
+			feature_id = #{featureDepot.id},
+			ffanalysis_method = #{analysisDepot.id}, 
+			ffanalysis_desc = #{desc}, 
+			update_by = #{updateBy.id}, 
+			update_date = #{updateDate}, 
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		DELETE FROM feature_analysis 
+		WHERE id = #{id}
+	</update>
+	
+</mapper>

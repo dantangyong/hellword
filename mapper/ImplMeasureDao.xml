@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mht.modules.dm.dao.ImpleMeasureDao">
+     
+	<sql id="impleMeasureColumns">
+		imm.id,
+		imm.impl_measure_business AS "business",
+        imm.impl_measure_dm AS "dm",
+		imm.file_ids AS "FileIds",
+		imm.impl_measure_desc AS "desc",
+		imm.create_by AS "createBy.id",
+		imm.create_date,
+		imm.update_by AS "updateBy.id",
+		imm.update_date
+	</sql>
+	<select id="get" resultType="ImplMeasure">
+		SELECT 
+			* 
+		FROM impl_measure 
+		WHERE id = #{id}
+	</select>
+	
+	<select id="findList" resultType="ImplMeasure">
+		SELECT 
+			* 
+		FROM impl_measure 
+	</select>
+
+	<insert id="insert">
+		INSERT INTO impl_measure(
+			id, 
+			impl_measure_business, 
+			impl_measure_dm,
+            file_ids,
+			impl_measure_desc, 
+			create_by, 
+			create_date, 
+			update_by, 
+			update_date 
+		) VALUES (
+			#{id}, 
+			#{business}, 
+			#{dm}, 
+			#{FileIds}, 
+			#{desc}, 
+			#{createBy.id}, 
+			#{createDate}, 
+			#{updateBy.id}, 
+			#{updateDate}
+			
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE impl_measure SET 
+			impl_measure_business = #{business},
+			impl_measure_dm = #{dm}, 
+			file_ids = #{FileIds}, 
+			impl_measure_desc = #{desc}, 
+			update_by = #{updateBy.id}, 
+			update_date = #{updateDate}, 
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		DELETE FROM impl_measure 
+		WHERE id = #{id}
+	</update>
+	
+</mapper>
+
