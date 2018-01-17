@@ -1,8 +1,5 @@
 # hellword
 1111111
-<<<<<<< .merge_file_a08748
-other
-=======
 
 2222222
 sssssss
@@ -19,4 +16,3 @@ xxxxxxxxxxxx
 feature
 
 
->>>>>>> .merge_file_a07268
