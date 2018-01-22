@@ -1,0 +1,124 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com</groupId>
+		<artifactId>mht_base</artifactId>
+		<version>1.0</version>
+	</parent>
+	<groupId>com</groupId>
+	<artifactId>mht_portal</artifactId>
+	<version>1.0</version>
+	<packaging>war</packaging>
+	<name>mht_sdep Maven Webapp</name>
+	<url>http://maven.apache.org</url>
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com</groupId>
+			<artifactId>mht_sys</artifactId>
+			<version>1.0</version>
+			<type>war</type>
+		</dependency>
+		<dependency>
+			<groupId>com</groupId>
+			<artifactId>mht_common</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.apache.solr/solr-solrj -->
+		<dependency>
+			<groupId>org.apache.solr</groupId>
+			<artifactId>solr-solrj</artifactId>
+			<version>6.6.0</version>
+		</dependency>
+		<dependency>
+			<groupId>mht.plugin</groupId>
+			<artifactId>common</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+			<type>jar</type>
+		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>mht.plugin</groupId> -->
+<!-- 			<artifactId>public_opinion_analysis</artifactId> -->
+<!-- 			<version>0.0.1-SNAPSHOT</version> -->
+<!-- 			<type>jar</type> -->
+<!-- 		</dependency> -->
+<!-- 		<dependency> -->
+<!-- 			<groupId>mht.plugin</groupId> -->
+<!-- 			<artifactId>tokenizer</artifactId> -->
+<!-- 			<version>0.0.1-SNAPSHOT</version> -->
+<!-- 			<type>jar</type> -->
+<!-- 		</dependency> -->
+<!-- 		<dependency> -->
+<!-- 			<groupId>mht.plugin</groupId> -->
+<!-- 			<artifactId>association_analyse</artifactId> -->
+<!-- 			<version>0.0.1-SNAPSHOT</version> -->
+<!-- 			<type>jar</type> -->
+<!-- 		</dependency> -->
+<!-- 		<dependency> -->
+<!-- 			<groupId>mht.plugin</groupId> -->
+<!-- 			<artifactId>movie_recommend</artifactId> -->
+<!-- 			<version>0.0.1-SNAPSHOT</version> -->
+<!-- 			<type>jar</type> -->
+<!-- 		</dependency> -->
+<!-- 		<dependency> -->
+<!--             <groupId>mht.plugin</groupId> -->
+<!--             <artifactId>my_message</artifactId> -->
+<!--             <version>0.0.1-SNAPSHOT</version> -->
+<!--             <type>jar</type> -->
+<!--         </dependency> -->
+
+<!--         <dependency> -->
+<!--             <groupId>mht.plugin</groupId> -->
+<!--             <artifactId>my_collection</artifactId> -->
+<!--             <version>0.0.1-SNAPSHOT</version> -->
+<!--             <type>jar</type> -->
+<!--         </dependency> -->
+<!--         <dependency> -->
+<!--             <groupId>mht.plugin</groupId> -->
+<!--             <artifactId>my_application</artifactId> -->
+<!--             <version>0.0.1-SNAPSHOT</version> -->
+<!--             <type>jar</type> -->
+<!--         </dependency> -->
+<!--         <dependency> -->
+<!--             <groupId>mht.plugin</groupId> -->
+<!--             <artifactId>my_todo</artifactId> -->
+<!--             <version>0.0.1-SNAPSHOT</version> -->
+<!--             <type>jar</type> -->
+<!--         </dependency> -->
+
+<!--         <dependency> -->
+<!--             <groupId>mht.plugin</groupId> -->
+<!--             <artifactId>personal_data_center</artifactId> -->
+<!--             <version>0.0.1-SNAPSHOT</version> -->
+<!--             <type>jar</type> -->
+<!--         </dependency>  -->
+
+	</dependencies>
+	<build>
+		<finalName>mht_portal</finalName>
+		<plugins>
+			<!-- 合并多个war -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<configuration>
+					<packagingExcludes>WebContent/WEB-INF/web.xml</packagingExcludes>
+					<overlays>
+						<overlay>
+							<groupId>com</groupId>
+							<artifactId>mht_sys</artifactId>
+						</overlay>
+					</overlays>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

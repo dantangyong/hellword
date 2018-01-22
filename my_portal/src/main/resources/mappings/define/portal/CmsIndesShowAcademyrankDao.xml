@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mht.define.portal.cms.dao.CmsIndexShowAcademyrankDao">
+
+	<sql id="cmsIndexShowAcademyrankColumns">
+		cisa.id,
+		cisa.academyrank_title AS "title",
+		cisa.academyrank_xAxis AS "xAxis",
+		cisa.academyrank_data AS "data",
+		cisa.remarks,
+		cisa.del_flag,
+		cisa.create_by AS "createBy.id",
+		cisa.create_date,
+		cisa.update_by AS "updateBy.id",
+		cisa.update_date
+	</sql>
+	<select id="get" resultType="CmsIndexShowAcademyrank">
+		SELECT 
+			<include refid="cmsIndexShowAcademyrankColumns"/> 
+		FROM mht_portal.cms_index_show_academyrank cisa
+		WHERE cisa.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="CmsIndexShowAcademyrank">
+		SELECT 
+			<include refid="cmsIndexShowAcademyrankColumns"/> 
+		FROM mht_portal.cms_index_show_academyrank
+	</select>
+	
+	<!-- @Select("SELECT  c.academyrank_xAxis as xAxis from mht_portal.cms_index_show_academyrank c") 
+		查询学院排名 的legend的data数据
+	-->
+	<select id="getAcademyrankLegendData" resultType="CmsIndexShowAcademyrank">
+		SELECT 
+			cisa.academyrank_xAxis AS "xAxis"
+		FROM mht_portal.cms_index_show_academyrank cisa
+	</select>
+	
+	<!-- 查询学院排名 的series中的data数据 -->
+	<select id="getAcademyrankSeriesData" resultType="CmsIndexShowAcademyrank">
+		SELECT 
+			cisa.academyrank_data AS "data" 
+		FROM mht_portal.cms_index_show_academyrank cisa
+	</select>
+	
+	
+	
+	
+
+	<insert id="insert">
+		INSERT INTO mht_portal.cms_index_show_academyrank(
+			id, 
+			academyrank_title
+            academyrank_xAxis,
+			academyrank_data, 
+			create_by, 
+			create_date, 
+			update_by, 
+			update_date,
+			remarks, 
+			del_flag 
+		) VALUES (
+			#{id}, 
+			#{title}, 
+ 			#{xAxis}, 
+			#{data}, 
+			#{createBy.id}, 
+			#{createDate}, 
+			#{updateBy.id}, 
+			#{updateDate},
+			#{remarks}, 
+			#{delFlag}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE mht_portal.cms_index_show_academyrank SET 
+			analysis_id = #{analysisDepot.id}, 
+			academyrank_title = #{title}, 
+			academyrank_xAxis = #{xAxis}, 
+			academyrank_data= #{data}
+			update_by = #{updateBy.id}, 
+			update_date = #{updateDate},
+			remarks = #{remarks} 
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		DELETE FROM mht_portal.cms_index_show_academyrank 
+		WHERE id = #{id}
+	</update>
+	
+
+</mapper>

@@ -1,0 +1,132 @@
+html, body, div, applet, object, iframe, h1, h2, h3, h4, h5, h6, p,
+	blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn,
+	em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup,
+	tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, input,
+	textarea, select, button, label, legend, table, caption, tbody, tfoot,
+	thead, tr, th, td {
+	background: transparent;
+	border: 0;
+	font-weight: normal;
+	margin: 0;
+	outline: 0;
+	padding: 0;
+	list-style: none;
+	font-size: 12px;
+	color: #575d65
+}
+
+*::selection {
+	background: #00b3ee
+}
+
+select, input, img, select {
+	vertical-align: middle
+}
+
+a {
+	color: #575d65;
+	text-decoration: none !important
+}
+
+* {
+	box-sizing: border-box
+}
+
+html {
+	font-size: 12px;
+	height: 100%
+}
+
+body {
+	font-family: sans-serif, Heiti, "Microsoft Yahei";
+	color: #575d65;
+	background: #f2f4fb;
+}
+
+
+.show-one {
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden
+}
+
+.show-two {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2
+}
+
+.show-four {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 4
+}
+
+.border-radius {
+	border-radius: 6px;
+	box-shadow: 0 0 20px #e9ebf3;
+	background-color: #fff
+}
+
+.channel-nav {
+	margin: 20px 0;
+	text-align: center
+}
+
+.channel-nav li {
+	display: inline-block
+}
+
+.channel-nav li a {
+	border-right: 1px solid #575d65;
+	padding-top: 0;
+	padding-bottom: 0;
+	margin-bottom: 10px
+}
+
+.channel-nav li a:hover {
+	background-color: transparent;
+	color: #1c7fff
+}
+
+.channel-nav li.active a {
+	color: #1c7fff
+}
+
+.title-header {
+	margin: 60px 0 20px 0;
+	font-size: 16px;
+	font-weight: bold
+}
+
+.pub-time {
+	color: #666;
+	border-bottom: 1px solid #e4e4e6;
+	padding-bottom: 15px
+}
+
+.pub-time span {
+	margin-right: 50px
+}
+
+.wrap-detail-content {
+	padding-bottom: 20px;
+	border-bottom: 1px solid #e4e4e6;
+	margin-bottom: 10px
+}
+
+.wrap-detail-content .line-style {
+	line-height: 30px
+}
+
+.wrap-detail-content p {
+	margin: 20px 0
+}
+
+.img-responsive {
+	margin: 0 auto
+}

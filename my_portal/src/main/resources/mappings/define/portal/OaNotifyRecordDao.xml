@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mht.define.portal.cms.dao.OalistNotifyRecordDao">
+  <resultMap id="OaNotifyResultMap" type="com.mht.define.portal.cms.entity.OaNotifyRecord">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="oa_notify_id" jdbcType="VARCHAR" property="oaNotifyId" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="read_flag" jdbcType="CHAR" property="readFlag" />
+    <result column="read_date" jdbcType="DATE" property="readDate" />
+  </resultMap>
+ 
+</mapper>

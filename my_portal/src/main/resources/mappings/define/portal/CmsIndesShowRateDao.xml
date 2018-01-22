@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mht.define.portal.cms.dao.CmsIndexShowRateDao">
+
+	<sql id="cmsIndexShowRateColumns">
+		c.id,
+		c.rate_title AS "title",
+		c.rate_xAxis AS "xAxis",
+		c.rate_legend AS "legend",
+		c.rate_series AS "series",
+		c.remarks,
+		c.del_flag,
+		c.create_by AS "createBy.id",
+		c.create_date,
+		c.update_by AS "updateBy.id",
+		c.update_date
+	</sql>
+	<select id="get" resultType="CmsIndexShowRate">
+		SELECT 
+			<include refid="cmsIndexShowRateColumns"/> 
+		FROM mht_portal.cms_index_show_rate c
+		WHERE c.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="CmsIndexShowRate">
+		SELECT 
+			<include refid="cmsIndexShowRateColumns"/> 
+		FROM mht_portal.cms_index_show_rate
+	</select>
+	
+	<!--查询就业率统计的legend的data数据-->
+	<select id="getRateLegendData" resultType="CmsIndexShowRate">
+		SELECT
+			c.rate_legend AS legend
+		FROM
+			mht_portal.cms_index_show_rate c
+		GROUP BY
+			legend
+	</select>
+	
+	<!--查询就业率统计的xAxis中的data数据-->
+	<select id="getRateXAxisData" resultType="CmsIndexShowRate">
+		SELECT
+			c.rate_xAxis AS xAxis
+		FROM
+			mht_portal.cms_index_show_rate c
+		GROUP BY
+			xAxis
+	</select>
+	
+	<!-- 查询就业率统计的series中的data数据 -->
+	<select id="getRateSeriesData" resultType="CmsIndexShowRate">
+		SELECT
+			c.rate_series AS series,
+			c.rate_legend AS legend,
+			c.rate_xAxis AS xAxis
+		FROM
+			mht_portal.cms_index_show_rate c
+		ORDER BY
+			legend
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO mht_portal.cms_index_show_rate(
+			id, 
+			rate_title
+            rate_xAxis,
+            rate_legend,
+			rate_series, 
+			create_by, 
+			create_date, 
+			update_by, 
+			update_date,
+			remarks, 
+			del_flag 
+		) VALUES (
+			#{id}, 
+			#{title}, 
+ 			#{xAxis}, 
+			#{legend}, 
+			#{series}, 
+			#{createBy.id}, 
+			#{createDate}, 
+			#{updateBy.id}, 
+			#{updateDate},
+			#{remarks}, 
+			#{delFlag}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE mht_portal.cms_index_show_rate SET 
+			analysis_id = #{analysisDepot.id}, 
+			rate_title = #{title}, 
+			rate_xAxis = #{xAxis}, 
+			rate_legend = #{legend}, 
+			rate_series= #{series}
+			update_by = #{updateBy.id}, 
+			update_date = #{updateDate},
+			remarks = #{remarks} 
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		DELETE FROM mht_portal.cms_index_show_rate 
+		WHERE id = #{id}
+	</update>
+	
+
+</mapper>

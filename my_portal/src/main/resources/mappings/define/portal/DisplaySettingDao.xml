@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mht.define.portal.cms.dao.DisplaySettingDao">
+    
+	<sql id="cmsDisplayColumns">
+		a.id AS "id",
+		a.systemName AS "systemName",
+		a.logo AS "logo",
+		a.carousel AS "carousel",
+		a.frequency AS "frequency",
+		a.theme AS "theme",
+		a.create_by AS "createBy.id",
+		a.create_date AS "createDate",
+		a.update_by AS "updateBy.id",
+		a.update_date AS "updateDate",
+		a.remarks AS "remarks",
+		a.del_flag AS "delFlag"
+	</sql>
+	
+	<select id="get" resultType="DisplaySetting">
+		SELECT 
+			<include refid="cmsDisplayColumns"/>
+		FROM mht_portal.cms_display_setting a
+		WHERE a.id = #{id}
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO mht_portal.cms_display_setting(
+			id,
+			systemName,
+			logo,
+			carousel,
+			frequency,
+			theme,
+			create_by,
+			create_date,
+			update_by,
+			update_date,
+			remarks,
+			del_flag
+		) VALUES (
+			#{id},
+			#{systemName},
+			#{logo},
+			#{carousel},
+			#{frequency},
+			#{theme},
+			#{createBy.id},
+			#{createDate},
+			#{updateBy.id},
+			#{updateDate},
+			#{remarks},
+			#{delFlag}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE mht_portal.cms_display_setting SET 	
+			systemName = #{systemName},
+			logo = #{logo},
+			carousel = #{carousel},
+			frequency = #{frequency},
+			theme = #{theme},
+			update_by = #{updateBy.id},
+			update_date = #{updateDate},
+			remarks = #{remarks},
+			del_flag = #{delFlag}
+		WHERE id = #{id}
+	</update>
+	
+</mapper>

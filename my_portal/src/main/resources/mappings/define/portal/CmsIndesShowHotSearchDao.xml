@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mht.define.portal.cms.dao.CmsIndexShowHotSearchDao">
+
+	<sql id="cmsIndexShowHotSearchColumns">
+		c.id,
+		c.hotSearch_title AS "title",
+		c.hotSearch_dataname AS "name",
+		c.hotSearch_datavalue AS "value",
+		c.remarks,
+		c.del_flag,
+		c.create_by AS "createBy.id",
+		c.create_date,
+		c.update_by AS "updateBy.id",
+		c.update_date
+	</sql>
+	<select id="get" resultType="CmsIndexShowHotSearch">
+		SELECT 
+			<include refid="cmsIndexShowHotSearchColumns"/> 
+		FROM mht_portal.cms_index_show_hotSearch c
+		WHERE c.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="CmsIndexShowHotSearch">
+		SELECT 
+			<include refid="cmsIndexShowHotSearchColumns"/> 
+		FROM mht_portal.cms_index_show_hotSearch
+	</select>
+	
+	<!-- 查询就业率统计的series中的data数据 -->
+	<select id="getHotSearchSeriesData" resultType="CmsIndexShowHotSearch">
+		SELECT
+			c.hotsearch_dataname AS name,
+			c.hotsearch_datavalue  AS value
+		FROM
+			mht_portal.cms_index_show_hotsearch c
+		ORDER BY  name
+	</select>
+
+	
+
+	
+	<insert id="insert">
+		INSERT INTO mht_portal.cms_index_show_hotSearch(
+			id, 
+			hotSearch_title
+            hotSearch_dataname,
+            hotSearch_datavalue,
+			create_by, 
+			create_date, 
+			update_by, 
+			update_date,
+			remarks, 
+			del_flag 
+		) VALUES (
+			#{id}, 
+			#{title}, 
+ 			#{name}, 
+			#{value}, 
+			#{createBy.id}, 
+			#{createDate}, 
+			#{updateBy.id}, 
+			#{updateDate},
+			#{remarks}, 
+			#{delFlag}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE mht_portal.cms_index_show_hotSearch SET 
+			analysis_id = #{analysisDepot.id}, 
+			hotSearch_title = #{title}, 
+			hotSearch_dataname = #{name}, 
+			hotSearch_datavalue = #{value}, 
+			update_by = #{updateBy.id}, 
+			update_date = #{updateDate},
+			remarks = #{remarks} 
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		DELETE FROM mht_portal.cms_index_show_hotSearch 
+		WHERE id = #{id}
+	</update>
+	
+
+</mapper>

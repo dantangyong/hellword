@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mht.define.portal.cms.dao.NewNoticeDao"> 
+  <sql id="oaNotifyColumns">
+		a.ID AS "id",
+		a.TYPE AS "type",
+		a.TITLE AS "title",
+		a.CONTENT AS "content",
+		a.FILES AS "files",
+		a.STATUS AS "status",
+		a.office_id as "office.id",
+		a.CREATE_BY AS "createBy.id",
+		a.CREATE_DATE AS "createDate",
+		a.UPDATE_BY AS "updateBy.id",
+		a.UPDATE_DATE AS "updateDate",
+		a.REMARKS AS "remarks",
+		a.DEL_FLAG AS "delFlag",
+		o.name AS "office.name"
+	</sql>
+	
+	<sql id="oaNotifyJoins">
+    	LEFT JOIN mht_base.sys_office o on o.id = a.office_id
+	</sql>
+    
+	<select id="get" resultType="NewNotice">
+		SELECT 
+			<include refid="oaNotifyColumns"/>
+		FROM mht_portal.oa_notify a
+		<include refid="oaNotifyJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="NewNotice">
+		SELECT 
+			<include refid="oaNotifyColumns"/>
+		FROM mht_portal.oa_notify a
+		<include refid="oaNotifyJoins"/>
+		WHERE a.del_flag = #{DEL_FLAG_NORMAL}
+		<if test="title != null and title != ''">
+			AND a.TITLE LIKE 
+					<if test="dbName == 'oracle'">'%'||#{title}||'%'</if>
+					<if test="dbName == 'mysql'">CONCAT('%', #{title}, '%')</if>
+		</if>
+			AND a.TYPE = '1'
+		<if test="status != null and status != ''">
+			AND a.STATUS = #{status}
+		</if>
+		ORDER BY a.update_date DESC
+	</select>
+	
+	<select id="findAllList" resultType="NewNotice">
+		SELECT 
+			<include refid="oaNotifyColumns"/>
+		FROM mht_portal.oa_notify a
+		<include refid="oaNotifyJoins"/>
+		WHERE a.del_flag = #{DEL_FLAG_NORMAL} 
+		ORDER BY a.update_date DESC
+	</select>
+	
+	<select id="findHomeNotice" resultType="NewNotice">
+		SELECT 
+			<include refid="oaNotifyColumns"/>
+		FROM mht_portal.oa_notify a
+		<include refid="oaNotifyJoins"/>
+		WHERE a.del_flag = '0' 
+		ORDER BY a.update_date DESC
+		LIMIT 6
+	</select>
+	
+	<select id="findCount" resultType="Long">
+		SELECT 
+			count(1)
+		FROM mht_portal.oa_notify a
+		WHERE a.del_flag = #{DEL_FLAG_NORMAL}
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO mht_portal.oa_notify(
+			id,
+			type,
+			title,
+			content,
+			files,
+			status,
+			office_id,
+			CREATE_BY,
+			CREATE_DATE,
+			UPDATE_BY,
+			UPDATE_DATE,
+			REMARKS,
+			DEL_FLAG
+		) VALUES (
+			#{id},
+			#{type},
+			#{title},
+			#{content},
+			#{files},
+			#{status},
+			#{office.id},
+			#{createBy.id},
+			#{createDate},
+			#{updateBy.id},
+			#{updateDate},
+			#{remarks},
+			#{delFlag}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE mht_portal.oa_notify SET 	
+			TYPE = #{type},
+			TITLE = #{title},
+			CONTENT = #{content},
+			FILES = #{files},
+			STATUS = #{status},
+			office_id = #{office.id},
+			UPDATE_BY = #{updateBy.id},
+			UPDATE_DATE = #{updateDate},
+			REMARKS = #{remarks}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		DELETE FROM mht_portal.oa_notify
+		WHERE id = #{id}
+	</update>
+	
+	<update id="deleteByLogic">
+		UPDATE mht_portal.oa_notify SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</update>
+	
+ <select id="getOfficeIdByUserId" parameterType="java.lang.String" resultType="java.lang.String">
+ 	select user.office_id from mht_base.sys_user user where user.id = #{id}
+ </select>
+  
+  <select id="selectcount" resultType = "java.lang.Integer">
+  	select count(*) from mht_portal.oa_notify WHERE oa_notify.del_flag='0' and oa_notify.type !='4' and status='1'
+  </select>
+  
+  <select id="selectcountByKeys" resultType = "java.lang.Integer">
+  	select count(*) from mht_portal.oa_notify WHERE oa_notify.del_flag='0' and oa_notify.type !='4' and oa_notify.title LIKE '%${pb.name}%'
+  </select>
+  
+  <select id="selectByNotify" resultType="NewNotice">
+		SELECT * 
+		FROM  mht_portal.oa_notify notify where 1=1 and notify.type !='4' and notify.status='1'
+		<if test="pb.name!='' and pb.name!=null">
+		AND notify.title LIKE '%${pb.name}%'
+		</if>
+		AND notify.del_flag='0'
+		order by notify.update_date desc
+		 limit #{pb.start},10
+  </select>
+  
+  <select id="selectClickNotice" parameterType="java.lang.String" resultType="NewNotice">
+  		SELECT * FROM mht_portal.oa_notify a WHERE  a.id = #{name}
+	</select>
+</mapper>

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mht.define.portal.cms.dao.CmsBannerDao">
+    
+	<sql id="cmsBannerColumns">
+		a.id AS "id",
+		a.sort AS "sort",
+		a.description AS "description",
+		a.disable AS "disable",
+		a.image_url AS "imageUrl",
+		a.create_by AS "createBy",
+		a.create_date AS "createDate",
+		a.update_by AS "updateBy",
+		a.update_date AS "updateDate",
+		a.remarks AS "remarks",
+		a.del_flag AS "delFlag"
+	</sql>
+	
+	<select id="get" resultType="CmsBanner">
+		SELECT 
+			<include refid="cmsBannerColumns"/>
+		FROM mht_portal.cms_banner a
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="getShowBanners" resultType="CmsBanner">
+		SELECT 
+			<include refid="cmsBannerColumns"/>
+		FROM mht_portal.cms_banner a
+		<where>
+			a.disable = #{disable}
+			AND a.del_flag = #{DEL_FLAG_NORMAL}
+		</where>
+		ORDER BY a.sort DESC
+		LIMIT 5
+	</select>
+	
+	<select id="findList" resultType="CmsBanner" >
+		SELECT 
+			<include refid="cmsBannerColumns"/>
+		FROM mht_portal.cms_banner a
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.sort ASC
+			</otherwise>
+		</choose>
+	</select>
+	
+		<select id="findAllList" resultType="CmsBanner" >
+		SELECT 
+			<include refid="cmsBannerColumns"/>
+		FROM mht_portal.cms_banner a
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO mht_portal.cms_banner(
+			id,
+			sort,
+			description,
+			disable,
+			image_url,
+			create_by,
+			create_date,
+			update_by,
+			update_date,
+			remarks,
+			del_flag
+		) VALUES (
+			#{id},
+			#{sort},
+			#{description},
+			#{disable},
+			#{imageUrl},
+			#{createBy.id},
+			#{createDate},
+			#{updateBy.id},
+			#{updateDate},
+			#{remarks},
+			#{delFlag}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE mht_portal.cms_banner SET 	
+			sort = #{sort},
+			description = #{description},
+			disable = #{disable},
+			image_url = #{imageUrl}
+		WHERE id = #{id}
+	</update>
+	
+	<delete id="delete">
+		DELETE from mht_portal.cms_banner
+		WHERE id = #{id}
+	</delete>
+	
+		<!--逻辑删除-->
+	<update id="deleteByLogic">
+		UPDATE mht_portal.cms_banner SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</update>
+	
+</mapper>

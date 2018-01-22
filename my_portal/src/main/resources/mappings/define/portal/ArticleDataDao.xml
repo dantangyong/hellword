@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mht.define.portal.cms.dao.ArticleDataDao">
+    
+	<sql id="cmsArticleDataColumns">
+		a.id AS "id",
+		a.content AS "content",
+		a.copyfrom AS "copyfrom",
+		a.relation AS "relation",
+		a.allow_comment AS "allow_comment"
+	</sql>
+	
+	<sql id="cmsArticleDataJoins">
+	</sql>
+    
+	<select id="get" resultType="ArticleData">
+		SELECT 
+			<include refid="cmsArticleDataColumns"/>
+		FROM mht_portal.cms_article_data a
+		<include refid="cmsArticleDataJoins"/>
+		WHERE a.id = #{id}
+	</select>
+		
+	<insert id="insert">
+		INSERT INTO mht_portal.cms_article_data(
+			id,
+			content,
+			copyfrom,
+			relation,
+			allow_comment
+		) VALUES (
+			#{id},
+			#{content},
+			#{copyfrom},
+			#{relation},
+			#{allowComment}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE mht_portal.cms_article_data SET 	
+			content = #{content},
+			copyfrom = #{copyfrom},
+			relation = #{relation},
+			allow_comment = #{allowComment}
+		WHERE id = #{id}
+	</update>
+	
+<!-- 	 合并 -->	
+	<resultMap id="entityResultMap" type="com.mht.define.portal.cms.entity.ArticleData">
+     <result column="id1" jdbcType="VARCHAR" property="id" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="copyfrom" jdbcType="VARCHAR" property="copyfrom" />
+    <result column="relation" jdbcType="VARCHAR" property="relation" />
+    <result column="allow_comment" jdbcType="CHAR" property="allowComment" />
+    
+    <association javaType="com.mht.define.portal.cms.entity.Category" property="category" >
+    <result column="id" jdbcType="VARCHAR" property="id" />
+    	<result column="name" property="name" />
+    	<result column="image" property="image" />
+    	<result column="description" property="description" />
+    	<result column="update_date" property="updateDate" />
+    </association>
+	<association javaType="com.mht.define.portal.cms.entity.Article" property="article" column="id2">
+   		<result column="id2" jdbcType="VARCHAR" property="id" />
+   			<result column="title" property="title" />
+   			<result column="link" property="link" />
+   			<result column="image2" property="image" />
+   			<result column="update_date1" property="updateDate"/>
+   			<result column="description1" property="description"/>
+   		</association>
+	</resultMap>
+	<select id="selectcount" parameterType="java.lang.String" resultType = "java.lang.Integer">
+		select count(*) 
+		
+		from 
+		
+		mht_portal.cms_article a2     INNER JOIN cms_article_data a1 ON a1.id=a2.id INNER JOIN  cms_category c3 ON c3.id=a2.category_id 
+	where a1.id=a2.id and c3.id=a2.category_id 
+	
+	 and c3.name=#{name} and a2.del_flag='0'
+	
+	</select>
+	
+   <select id="selectIf" resultMap="entityResultMap">
+		select 
+		    a1.id id1,
+		  	a1.allow_comment allow_comment,
+		  	a1.copyfrom copyfrom,
+	     	c3.*,
+		  	a2.id id2,
+		  	a2.link link,
+		  	a2.image image2,
+		  	a2.keywords keywords1,
+		  	a2.description description1,
+		  	a2.custom_content_view custom_content_view1,
+		  	a2.title,
+		  	a2.view_config view_config1,
+		  	a2.create_by create_by2,
+		  	a2.create_date create_date1,
+		  	a2.update_by update_by1,
+		  	a2.update_date update_date1,
+		  	a2.remarks remarks1,
+		  	a2.del_flag del_flag1
+  	  FROM
+  	       cms_article a2     
+  	        INNER JOIN cms_article_data a1 ON a1.id=a2.id 
+  	        INNER JOIN  cms_category c3 ON c3.id=a2.category_id 
+	   where a1.id=a2.id and c3.id=a2.category_id 
+	         and c3.name=#{name,jdbcType=VARCHAR} and a2.del_flag='0' and a2.disable='1' 
+	 ORDER BY a2.weight DESC,a2.update_date DESC
+	<if test="pageSize!=null">
+	limit #{start},#{pageSize}
+	</if>
+	<if test="pageSize==null">
+	limit #{start},5
+	</if>
+  </select>
+  <select id="selectClickNews" parameterType="java.lang.String" resultMap="entityResultMap">
+		select 
+			a1.id id1,
+			a1.content,
+		  	a1.allow_comment allow_comment,
+		  	a1.copyfrom copyfrom,
+		  	a2.id id2,
+		  	a2.image image2,
+		  	a2.title,
+		  	a2.link link,
+		  	a2.keywords keywords1,
+		  	a2.description description1,
+		  	a2.custom_content_view custom_content_view1,
+		  	a2.view_config view_config1,
+		  	a2.create_by create_by2,
+		  	a2.create_date create_date1,
+		  	a2.update_by update_by1,
+		  	a2.update_date update_date1,
+		  	a2.remarks remarks1,
+		  	a2.del_flag del_flag1,
+		  	c.name
+  	 FROM
+  	       mht_portal.cms_article a2,cms_article_data a1,cms_category c
+	<if test="_parameter!=null">
+	 WHERE a1.id = a2.id AND a1.id=#{name} and  a2.category_id=c.id
+	</if>
+	</select>
+   <select id="selectHotNews"  resultMap="entityResultMap">
+	  select 
+		    a1.id id1,
+  	        a1.allow_comment allow_comment,
+  	        a1.copyfrom copyfrom,
+            c3.*,
+		  	a2.id id2,
+		  	a2.title,
+		  	a2.link link,
+		  	a2.image image2,
+		  	a2.posid posid,
+		  	a2.keywords keywords1,
+		  	a2.description description1,
+		  	a2.custom_content_view custom_content_view1,
+		  	a2.view_config view_config1,
+		  	a2.create_by create_by2,
+		  	a2.create_date create_date1,
+		  	a2.update_by update_by1,
+		  	a2.update_date update_date1,
+		  	a2.remarks remarks1,
+		  	a2.del_flag del_flag1,
+		  	a2.hits hits
+  	   FROM
+  	          mht_portal.cms_article a2     
+  	           INNER JOIN cms_article_data a1 ON a1.id=a2.id 
+  	           INNER JOIN  cms_category c3 ON c3.id=a2.category_id 
+	   where a1.id=a2.id and c3.id=a2.category_id and a2.del_flag='0' and a2.disable='1' and a2.image is not null and a2.image != ''
+				<if test="category !=null and category.name != null and category.name != ''">
+				   and  c3.name = #{category.name} 
+				 </if>
+				<if test="number == 3">
+				ORDER BY a2.hits DESC
+				</if>
+				<if test="number == 1">
+			and a2.posid='1' ORDER BY a2.weight,a2.update_date DESC limit 13
+				</if>
+  </select>
+</mapper>

@@ -1,0 +1,132 @@
+.cfw_x{
+	width: 100%;
+	padding: 10px;
+	height: auto;
+}
+
+.cfw_x .tab-content{
+	border-top: 1px solid #BBBBBB;
+	height:auto;
+}
+
+.cfw_x .nav-tabs {
+    border-bottom: 0;
+}
+.cfw_x .nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover {
+    color: #555;
+    cursor: default;
+    background-color: #FFF;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #BBBBBB #BBBBBB transparent;
+    -moz-border-top-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    border-image: none;
+}
+.cfw_x .nav-tabs > li > a {
+    margin-right: 2px;
+    line-height: 1.42857;
+    border: 1px solid transparent;
+    border-radius: 0px 0px 0px 0px;
+}
+
+
+.cfw_x .nav > li > a {
+    position: relative;
+    display: block;
+    padding: 6px 25px;
+    color: #333333;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/*   index6第二个切换样式                       */
+
+
+.cmao_x{
+    width: 100%;
+    padding: 10px;
+    height: auto;
+}
+
+.cmao_x .tab-content{
+    border: 1px solid #BBBBBB;
+    height: 807px;
+}
+
+.cmao_x .nav-tabs {
+    border-bottom: 0;
+}
+.cmao_x .nav-tabs > li.active > a,.cmao_x .nav-tabs > li.active > a:focus,.cmao_x .nav-tabs > li.active > a:hover {
+    color: #109046;
+    cursor: default;
+    background-color: #dddddd;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #109046 #109046 transparent;
+    -moz-border-top-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    border-image: none;
+    font-size: 16px;
+}
+.cmao_x .nav-tabs > li > a {
+    margin-right: 2px;
+    line-height: 1.42857;
+    border: 1px solid transparent;
+    border-radius: 0px 0px 0px 0px;
+}
+
+
+.cmao_x .nav > li > a {
+    position: relative;
+    display: block;
+    padding: 6px 25px;
+    color: #333333;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+
+body, button, input, select, textarea {
+    font: 13px/1.5 '微软雅黑', Verdana, Helvetica, Arial, sans-serif;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    outline: none;
+}
+
+/* head 表头*/
+.X-head{width: 100%;height: 72px;background: #363536;color: #ffffff;}
+.X-head div{display: inline-block;float: left;margin-left: 30px;padding-top: 10px;}
+.X-head div:last-child{float: right;margin-right: 10px;}
+.X-head div:last-child span{width: 100px;padding-top: 7px;}
+.X-head div:last-child span .X-pad{padding-top: 20px;}
+.X-head div span{display: inline-block;float: left;width: 100px;padding-top: 18px;}
+.X-head div span.active{font-size: 16px;}
+/* xinxi*/
+.X-lin{position: absolute;top: 0; right: 10px;}
+.X-l{position: absolute;top: 2px; left:300px;}
+/*搜索*/
+.X-con{display: inline-block;margin: 20px 0 10px 20px;width: 100%;}
+.X-con .Xin-sousuo{width: 480px;height: 60px;}
+.X-con .Xin-sousuo .X-input{width: 400px;height: 42px;border: 1px solid #ddddd;margin-right: -5px;outline:none;}
+.X-con .Xin-sousuo button{width: 76px;height: 42px;background: #eeeee;}
+/* xinwen*/
+.X-wen{padding: 20px 0 20px 30px;}
+.font16{font-size: 16px;font-weight: bold;}
+.font14{font-weight: bold;font-size: 14px;}
+/* 左右布局*/
+.new-left{width: 40%;display: inline-block;float: left;border-right:1px solid #000000;padding-right: 30px; }
+.new-right{width: 60%;display: inline-block;float: left;padding-left: 30px;}
+.mart50{margin-top: 50px;display: inline-block;padding-left: 30px;}
+.mart50 span{display: inline-block;float: left;margin-right: 20px;}
+/*tou*/
+.X-newsright{width: 30%;display: inline-block;float: left;height: auto;text-align: center;}
+ .X-newsright p{text-align: left;font-size:16px;margin: 20px 0 0 15px;}
+ .X-newsright div{display: inline-block;float: left;width: 80px;height: 20px;margin: 10px 20px 0 0;font-size: 13px;font-weight: normal;}
+/* 视频*/
+.X-s div{ width: 170px;height: 200px;margin:20px 20px 0 30px;display: inline-block;float: left; }
+.fr{text-align: right}

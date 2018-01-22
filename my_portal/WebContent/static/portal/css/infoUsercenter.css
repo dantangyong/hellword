@@ -1,0 +1,499 @@
+html,
+body,
+div,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+font,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+input,
+textarea,
+select,
+button,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td {
+  background: transparent;
+  border: 0;
+  font-weight: normal;
+  margin: 0;
+  outline: 0;
+  padding: 0;
+  list-style: none;
+}
+body {
+  font-family: "Lucida Grande", sans-serif, Heiti, "黑体", "Microsoft Yahei", "微软雅黑";
+  color: #000;
+  background: #EFEFEF;
+  padding-top: 60px;
+}
+*::selection {
+  background: #00b3ee;
+}
+select,
+input,
+img,
+select {
+  vertical-align: middle;
+}
+a {
+  color: #fff;
+  text-decoration: none;
+}
+* {
+  box-sizing: border-box;
+}
+html {
+  font-size: 12px;
+  height: 100%;
+}
+#nav {
+  padding-left: 100px;
+  padding-right: 100px;
+}
+#nav img {
+  vertical-align: top;
+}
+#nav a {
+  color: #fff;
+}
+#nav a:hover {
+  background: #1482C7;
+}
+#nav .navbar-brand > img {
+  position: relative;
+  top: -10px;
+}
+#nav #nav-info {
+  margin-left: 80px;
+}
+#nav #nav-info a {
+  font-size: 14px;
+}
+#nav #nav-info li.active > a {
+  background: #1482C7;
+}
+#nav #login-head a {
+  font-size: 12px;
+  height: 50px;
+  line-height: 30px;
+}
+#nav #login-head a img {
+  vertical-align: middle;
+}
+#nav #login-head a:focus {
+  background: none;
+}
+#nav #login-head a:hover {
+  background: none;
+}
+@media screen and (max-width: 768px) {
+  #nav {
+    padding: 0;
+  }
+  #nav #nav-info {
+    margin: 0;
+    display: block;
+  }
+}
+@media screen and (max-width: 1142px) {
+  #nav-info {
+    display: none;
+  }
+  #nav-info li:first-child {
+    display: block !important;
+  }
+}
+@media screen and (max-width: 1370px) {
+  #nav-info li:first-child {
+    display: none;
+  }
+}
+#nav .dropdown-menu a {
+  color: #717171;
+  width: 160px;
+  height: 40px !important;
+  line-height: 40px !important;
+}
+#nav .dropdown-menu a:hover {
+  background: #ddd !important;
+}
+.nav .open > a {
+  background-color: transparent;
+}
+.wrap-img {
+  position: relative;
+}
+.wrap-img .user-info {
+  position: absolute;
+  left: 20%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.wrap-img .user-info .wrap-content {
+  color: #fff;
+  margin-left: 20px;
+  margin-top: 10px;
+}
+.wrap-img .user-info .wrap-content h4 {
+  margin-bottom: 10px;
+}
+.wrap-img .wrap-user {
+  width: 102px;
+  height: 102px;
+  border-radius: 50%;
+  border: 2px solid #1482C7;
+  text-align: center;
+  cursor: pointer;
+}
+.top-distance {
+  margin-top: 10px;
+  padding-top: 20px;
+}
+.top-distance .tab-content {
+  padding: 15px;
+}
+.top-distance ul.horizontal-nav {
+  background: #fff;
+  margin-bottom: 20px;
+  padding-left: 20px;
+}
+.top-distance ul.horizontal-nav li {
+  display: inline-block;
+  margin: 1px 0;
+  height: 60px;
+}
+.top-distance ul.horizontal-nav li a {
+  text-align: center;
+  margin-right: 40px;
+  font-size: 16px;
+  line-height: 60px;
+  width: 100%;
+  height: 100%;
+  display: inline-block;
+  color: #666;
+  text-decoration: none;
+}
+.top-distance ul.horizontal-nav li a:hover {
+  color: #1482C7;
+}
+.top-distance ul.horizontal-nav li.active a {
+  border-bottom: 2px solid #1482C7;
+  color: #1482C7;
+}
+@media screen and (max-width: 767px) {
+  .user-info {
+    left: 31% !important;
+  }
+}
+#courseTable {
+  background: #fff;
+  padding-top: 20px;
+}
+#courseTable h2 {
+  background-color: #e7e7e7;
+  padding: 10px 0;
+}
+#courseTable table thead {
+  border: none;
+}
+#courseTable table thead th {
+  background: #eee;
+  border: none;
+  text-align: center;
+}
+#courseTable table td {
+  text-align: center;
+  vertical-align: middle;
+}
+#myCollection {
+  background: #fff;
+  padding-top: 20px;
+  padding-left: 20px;
+  padding-bottom: 20px;
+}
+#myCollection .service-item {
+  float: left;
+  border: 1px solid #efefef;
+  cursor: pointer;
+  padding: 17px;
+  overflow: hidden;
+  background: #fff;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  margin-right: 6px;
+  width: 270px;
+  height: 160px;
+  padding-left: 10px;
+}
+#myCollection .service-item .card {
+  padding-left: 10px;
+}
+#myCollection .service-item p {
+  font-size: 12px;
+  color: #808080;
+  overflow: hidden;
+  /*内容超出后隐藏*/
+  text-overflow: ellipsis;
+  /* 超出内容显示为省略号*/
+  white-space: nowrap;
+  /*文本不进行换行*/
+}
+#myCollection .service-item .card-text:after {
+  content: "";
+  display: block;
+  clear: both;
+  width: 0;
+  height: 0;
+  visibility: hidden;
+}
+#myCollection .service-item .card-text {
+  margin-bottom: 17px;
+}
+#myCollection .service-item a {
+  color: #000;
+  text-decoration: none;
+  font-size: 16px;
+}
+#myCollection .service-item .card-title {
+  margin-bottom: 10px;
+}
+#myCollection .service-item .img-left {
+  margin-right: 10px;
+  width: 70px;
+  height: 46px;
+}
+#myCollection:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+.load {
+  background: #fff;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+  float: left;
+  width: 100%;
+}
+.load a {
+  font-size: 12px;
+  color: #666;
+}
+.load a:hover {
+  background: #1482C7;
+  color: #fff;
+}
+#importantRemind {
+  background: #fff;
+}
+#importantRemind .panel {
+  width: 264px;
+  height: 154px;
+  margin-right: 6px;
+  margin-left: 7px;
+  margin-top: 20px;
+}
+#importantRemind .panel .panel-body {
+  height: 111px;
+}
+#importantRemind .panel .panel-body p {
+  color: #666;
+}
+#importantRemind .panel .panel-footer a {
+  color: #1482C7;
+}
+#importantRemind:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+#processTrace {
+  background: #fff;
+}
+#processTrace table {
+  margin-top: 20px;
+}
+#processTrace table td,
+#processTrace table th {
+  text-align: center;
+  vertical-align: middle;
+  height: 40px;
+}
+#processTrace table th {
+  background: #EEE;
+}
+/*模态框*/
+.myModal #show-star {
+  display: none;
+}
+.myModal .modal-dialog {
+  width: 80%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) !important;
+}
+.myModal .modal-header {
+  margin-left: 15px;
+}
+.myModal .modal-title-right {
+  margin-left: 16px;
+}
+.myModal .modal-title-right h4 {
+  font-weight: bold;
+}
+.myModal .modal-body {
+  max-height: 300px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.myModal .modal-body ul.text-body li {
+  color: #808080;
+  margin-bottom: 20px;
+}
+.myModal .modal-body ul.text-body li .title-key {
+  font-size: 14px;
+  color: #000;
+  font-weight: bold !important;
+}
+.myModal .modal-footer {
+  margin-left: 15px;
+}
+.myModal .modal-footer .btn-group {
+  float: left;
+}
+.myModal .modal-footer .btn-group button {
+  background: #1482C7;
+  width: 80px;
+  height: 30px;
+  border-radius: 3px;
+  margin-right: 20px;
+  color: #fff;
+  line-height: 15px;
+}
+.myModal .modal-footer .btn-group button:nth-child(2) {
+  background: #259de9;
+}
+.myModal .modal-footer .btn-group button:last-child {
+  background: #C7C7C7;
+}
+#dayPlan {
+  padding: 20px 0 20px 15px;
+  background: #fff;
+}
+.content-log {
+  background: #fff;
+  width: 500px;
+  height: 410px;
+  position: absolute;
+  left: 50%;
+  top: 30%;
+  transform: translate(-50%, -50%);
+}
+.toDo {
+  color: #1482C7;
+}
+.toDo:focus {
+  color: #1482C7;
+}
+.toDo:hover {
+  color: #1482C7;
+}
+.edit-info a:hover {
+  background: #1482C7 !important;
+  color: #fff !important;
+}
+#to-do-things {
+  padding: 15px;
+  background: #fff;
+}
+#to-do-things .panel {
+  width: 47%;
+  margin-right: 3%;
+}
+#to-do-things .panel .panel-body p a {
+  color: #1482C7;
+}
+#personal-data {
+  background: #fff;
+  padding: 15px;
+}
+@media screen and (min-width: 1000px) {
+  .wrap-img img {
+    width: 100%;
+  }
+}
+.info-item {
+  padding: 20px;
+  display: inline-block;
+  width: 45%;
+  margin-right: 2%;
+}
+.info-item .wrap-info-img {
+  float: left;
+  font-size: 12px;
+  margin-right: 10px;
+}
+.info-item .wrap-info-text {
+  float: left;
+  font-size: 12px;
+}
+.info-item a {
+  float: right;
+  color: #1482C7;
+}
+.wrap-info:after {
+  content: "";
+  display: block;
+  clear: both;
+}
