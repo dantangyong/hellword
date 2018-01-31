@@ -71,9 +71,8 @@
 /**
 * @Title: ${enclosing_method}
 * @Description: ◕ᴗ◕✿ ${todo}(Description)
-* @param ${tags}    参数
-* @return ${return_type}    返回类型
-* @throws
+* ${tags}  
+* ${return_type}  
 */
     </template>
     <template
